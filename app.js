@@ -35,8 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
             isCritical: false
         },
         ambito: {
-            title: "SCOPE MANAGEMENT",
-            category: "Governance dei Requisiti",
+            title: "SCOPE",
+            category: "",
             icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>`,
             description: "Presidio strutturato dei confini operativi del progetto. Definizione formale dei deliverable per prevenire variazioni non strutturate dei requisiti e garantire l'aderenza agli obiettivi di business contrattuali.",
             activities: [
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isCritical: false
         },
         rischi: {
-            title: "RISCHI",
+            title: "RISK",
             category: "Mitigazione & Prevenzione",
             icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
             description: "Identificazione anticipata dei fattori di incertezza interni ed esterni. Sviluppo di matrici di impatto/probabilità e pianificazione delle risposte di contingenza per minimizzare le minacce agli obiettivi chiave.",
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isCritical: false
         },
         monitoraggio: {
-            title: "MONITORAGGIO",
+            title: "MONITORING",
             category: "Hub Strategico Centrale",
             icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
@@ -476,6 +476,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Click: seleziona il nodo, mostra il pannello laterale ed oscura gli altri nodi (previene se è stato trascinato)
         node.addEventListener('click', (e) => {
+            if (node.classList.contains('is-expanded')) return;
             if (node.classList.contains('was-dragged')) {
                 node.classList.remove('was-dragged');
                 return;
@@ -504,6 +505,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const expandedContainer = el.querySelector('.expanded-view');
         if (!expandedContainer) return;
+
+        // Prevent inner clicks from bubbling up to the outer node's click handler
+        expandedContainer.addEventListener('click', (e) => e.stopPropagation());
 
         // Vista interattiva dedicata al pannello RISCHI
         if (nodeId === 'rischi') {
@@ -671,10 +675,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="rischi-reveal expanded-section">
                     <h3 class="rischi-section-title">Il Risk Register</h3>
                     <p class="rischi-narrative">Il Risk Register è un documento in cui si elencano tutti i rischi individuati. Per ognuno si assegnano <strong>cinque attributi chiave</strong>, che ne definiscono il profilo e guidano la risposta del Manager:</p>
-                    <p class="rischi-narrative"><strong>1. La probabilità</strong> con cui possono presentarsi — espressa in percentuale, con un codice colore, con un valore numerico, oppure con le classiche tre fasce <em>HIGH, MEDIUM, LOW</em>.</p>
+                    <p class="rischi-narrative"><strong>1. La probabilità</strong> con cui possono presentarsi (espressa in percentuale, con un codice colore, con un valore numerico, oppure con le classiche tre fasce <em>alta, media, bassa</em>).</p>
                     <p class="rischi-narrative"><strong>2. L'impatto</strong> che potrebbero avere, anch'esso espresso come valore numerico o come descrizione qualitativa.</p>
                     <p class="rischi-narrative"><strong>3. L'importo economico</strong> associato, ossia il costo che si materializzerebbe nel caso il rischio si concretizzasse.</p>
-                    <p class="rischi-narrative"><strong>4. Il ritardo temporale</strong> associato — lo slittamento previsto sulla timeline.</p>
+                    <p class="rischi-narrative"><strong>4. Il ritardo temporale</strong> associato (lo slittamento previsto sulla timeline).</p>
                     <p class="rischi-narrative"><strong>5. Un Piano B</strong>, ovvero un'azione correttiva definita a priori da poter attivare rapidamente.</p>
 
                     <button type="button" class="risk-register-trigger" data-rr-trigger aria-expanded="false" aria-controls="rr-table-panel">
@@ -704,7 +708,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <tr>
                                         <td data-label="ID" class="rr-id">R01</td>
                                         <td data-label="Rischio" class="rr-name">Ritardo fornitore cloud</td>
-                                        <td data-label="Probabilità"><span class="rr-tag rr-tag-high">High</span></td>
+                                        <td data-label="Probabilità"><span class="rr-tag rr-tag-high">Alta</span></td>
                                         <td data-label="Impatto"><span class="rr-tag rr-tag-high">Alto</span></td>
                                         <td data-label="Importo" class="rr-amount">€ 18.000</td>
                                         <td data-label="Ritardo" class="rr-delay">+12 gg</td>
@@ -713,7 +717,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <tr>
                                         <td data-label="ID" class="rr-id">R02</td>
                                         <td data-label="Rischio" class="rr-name">Indisponibilità dev senior</td>
-                                        <td data-label="Probabilità"><span class="rr-tag rr-tag-medium">Medium</span></td>
+                                        <td data-label="Probabilità"><span class="rr-tag rr-tag-medium">Media</span></td>
                                         <td data-label="Impatto"><span class="rr-tag rr-tag-medium">Medio</span></td>
                                         <td data-label="Importo" class="rr-amount">€ 9.500</td>
                                         <td data-label="Ritardo" class="rr-delay">+7 gg</td>
@@ -722,7 +726,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <tr>
                                         <td data-label="ID" class="rr-id">R03</td>
                                         <td data-label="Rischio" class="rr-name">Cambio requisiti normativi</td>
-                                        <td data-label="Probabilità"><span class="rr-tag rr-tag-low">Low</span></td>
+                                        <td data-label="Probabilità"><span class="rr-tag rr-tag-low">Bassa</span></td>
                                         <td data-label="Impatto"><span class="rr-tag rr-tag-high">Alto</span></td>
                                         <td data-label="Importo" class="rr-amount">€ 22.000</td>
                                         <td data-label="Ritardo" class="rr-delay">+20 gg</td>
@@ -731,7 +735,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <tr>
                                         <td data-label="ID" class="rr-id">R04</td>
                                         <td data-label="Rischio" class="rr-name">Sforamento budget licenze SaaS</td>
-                                        <td data-label="Probabilità"><span class="rr-tag rr-tag-medium">Medium</span></td>
+                                        <td data-label="Probabilità"><span class="rr-tag rr-tag-medium">Media</span></td>
                                         <td data-label="Impatto"><span class="rr-tag rr-tag-medium">Medio</span></td>
                                         <td data-label="Importo" class="rr-amount">€ 6.200</td>
                                         <td data-label="Ritardo" class="rr-delay">0 gg</td>
@@ -740,7 +744,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <tr>
                                         <td data-label="ID" class="rr-id">R05</td>
                                         <td data-label="Rischio" class="rr-name">Bug critico in produzione</td>
-                                        <td data-label="Probabilità"><span class="rr-tag rr-tag-medium">Medium</span></td>
+                                        <td data-label="Probabilità"><span class="rr-tag rr-tag-medium">Media</span></td>
                                         <td data-label="Impatto"><span class="rr-tag rr-tag-high">Alto</span></td>
                                         <td data-label="Importo" class="rr-amount">€ 14.000</td>
                                         <td data-label="Ritardo" class="rr-delay">+5 gg</td>
@@ -749,7 +753,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <tr>
                                         <td data-label="ID" class="rr-id">R06</td>
                                         <td data-label="Rischio" class="rr-name">Turnover di una figura chiave</td>
-                                        <td data-label="Probabilità"><span class="rr-tag rr-tag-low">Low</span></td>
+                                        <td data-label="Probabilità"><span class="rr-tag rr-tag-low">Bassa</span></td>
                                         <td data-label="Impatto"><span class="rr-tag rr-tag-high">Alto</span></td>
                                         <td data-label="Importo" class="rr-amount">€ 28.000</td>
                                         <td data-label="Ritardo" class="rr-delay">+18 gg</td>
@@ -759,9 +763,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             </table>
                         </div>
                         <div class="risk-register-legend">
-                            <span><span class="rr-tag rr-tag-high">High</span> Critico — intervento immediato</span>
-                            <span><span class="rr-tag rr-tag-medium">Medium</span> Da monitorare</span>
-                            <span><span class="rr-tag rr-tag-low">Low</span> Sotto soglia</span>
+                            <span><span class="rr-tag rr-tag-high">Alta</span> Critico (intervento immediato)</span>
+                            <span><span class="rr-tag rr-tag-medium">Media</span> Da monitorare</span>
+                            <span><span class="rr-tag rr-tag-low">Bassa</span> Sotto soglia</span>
                         </div>
                     </div>
                 </div>
@@ -791,11 +795,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         <strong>ALWAYS THE TRUTH.</strong><br>
                         Trasparenza totale con il cliente: comunicare onestamente cambi, ridiscussioni e ricalibrazioni del budget è ciò che, alla lunga, costruisce fiducia.
                     </div>
-                </div>
-
-                <div class="rischi-reveal expanded-section">
-                    <h3 class="rischi-section-title">N.B. — Triple Constraint Balance</h3>
-                    <p class="rischi-narrative">Solitamente, il Risk Budget temporale viene tracciato anche nei tool <strong>GANTT in "grigino"</strong>, per avere sempre sott'occhio la tolleranza delle varie fasi del progetto e mantenere bilanciato il triangolo <em>Tempo — Costi — Ambito</em>.</p>
                 </div>
             </div>
         `;
@@ -1215,12 +1214,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Header riutilizzabile per le viste interattive
     function buildExpandedHeader(data, closeId) {
+        const categoryTag = data.category ? `<span class="expanded-category-tag">${data.category}</span>` : '';
         return `
             <div class="expanded-header">
                 <div class="expanded-title-area">
                     <span class="expanded-icon-container">${data.icon}</span>
                     <div>
-                        <span class="expanded-category-tag">${data.category}</span>
+                        ${categoryTag}
                         <h2>${data.title}</h2>
                     </div>
                 </div>
@@ -1271,7 +1271,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ${buildExpandedHeader(data, 'ambito-close-btn')}
             <div class="expanded-body">
                 <div class="rischi-reveal rischi-lead">
-                    <p class="rischi-narrative">La cosa più importante che un Project Manager possa fare per controllare lo scope è <span class="rischi-highlight">gestire proattivamente lo «scope creep»</span> — la deviazione dai requisiti originali — puntando a migliorare costantemente il risultato.</p>
+                    <p class="rischi-narrative">La cosa più importante che un Project Manager possa fare per controllare lo scope è <span class="rischi-highlight">gestire proattivamente lo «scope creep»</span> (la deviazione dai requisiti originali) puntando a migliorare costantemente il risultato.</p>
                     <p class="rischi-narrative">La strategia vincente? <strong>Definire l'intero perimetro del progetto</strong> fin dalla fase iniziale di pianificazione.</p>
                 </div>
 
@@ -1283,7 +1283,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="issue-step-number">01</div>
                             <div class="issue-step-icon">🧑‍⚖️</div>
                             <h4>Change Control Board</h4>
-                            <p>Convoca un meeting per valutare la modifica, includendo i rappresentanti di tutte le funzioni — core e di supporto — potenzialmente impattate.</p>
+                            <p>Convoca un meeting per valutare la modifica, includendo i rappresentanti di tutte le funzioni (core e di supporto) potenzialmente impattate.</p>
                         </div>
                         <div class="issue-step" data-step="2" tabindex="0">
                             <div class="issue-step-number">02</div>
@@ -1295,30 +1295,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="issue-step-number">03</div>
                             <div class="issue-step-icon">🔁</div>
                             <h4>Iterazione del piano</h4>
-                            <p>Si riavvia la pianificazione, aggiornando tutti gli artefatti chiave del progetto.</p>
+                            <p>Si aggiornano requisiti, WBS (Work Breakdown Structure), diagrammi di precedenza, stime dei deliverable, diagramma di Gantt e analisi dei rischi.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="rischi-reveal expanded-section">
-                    <h3 class="rischi-section-title">Gli artefatti da aggiornare</h3>
-                    <p class="rischi-narrative">Iterare il piano significa rimettere mano a tutta la documentazione di progetto:</p>
-                    <div class="risk-type-badges scope-artifacts">
-                        <span class="risk-badge">📋 Requisiti</span>
-                        <span class="risk-badge">🗂️ WBS</span>
-                        <span class="risk-badge">🔗 Diagrammi di precedenza</span>
-                        <span class="risk-badge">📦 Stime deliverable</span>
-                        <span class="risk-badge">📊 Diagramma di Gantt</span>
-                        <span class="risk-badge">⚠️ Analisi dei rischi</span>
-                    </div>
-                </div>
-
-                <div class="rischi-reveal expanded-section">
-                    <div class="risk-callout risk-callout-warning">
-                        <span class="risk-callout-icon">💡</span>
-                        <p><strong>Attenzione:</strong> includi sempre nell'analisi d'impatto gli eventuali <strong>costi aggiuntivi</strong> derivanti dall'allungamento delle tempistiche.</p>
-                    </div>
-                </div>
             </div>
         `;
 
@@ -1327,19 +1308,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Step del Change Control: highlight attivo al click
         const steps = container.querySelectorAll('.issue-step');
         steps.forEach(step => {
-            const activate = () => { steps.forEach(s => s.classList.remove('is-active')); step.classList.add('is-active'); };
+            const activate = () => { 
+                steps.forEach(s => s.classList.remove('is-active')); 
+                step.classList.add('is-active'); 
+            };
             step.addEventListener('click', (e) => { e.stopPropagation(); activate(); });
             step.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
-        });
-
-        // Bounce sui badge degli artefatti
-        container.querySelectorAll('.scope-artifacts .risk-badge').forEach(badge => {
-            badge.addEventListener('click', (e) => {
-                e.stopPropagation();
-                badge.style.transition = 'transform 0.2s ease';
-                badge.style.transform = 'translateY(-6px) scale(1.08)';
-                setTimeout(() => { badge.style.transform = ''; }, 220);
-            });
         });
 
         setupRevealObserver(container);
@@ -1390,38 +1364,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="rischi-reveal expanded-section">
-                    <h3 class="rischi-section-title">Come rilevare l'avanzamento</h3>
-                    <div class="info-split">
-                        <div class="info-split-card">
-                            <div class="ist-head"><span class="ist-icon">✅</span><strong>Lavori completati</strong></div>
-                            <p>Chiedi la <strong>data di fine effettiva</strong>.</p>
-                        </div>
-                        <div class="info-split-card">
-                            <div class="ist-head"><span class="ist-icon">⏳</span><strong>Lavori in corso</strong></div>
-                            <p>Chiedi la <strong>percentuale di completamento</strong>.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="rischi-reveal expanded-section">
-                    <h3 class="rischi-section-title">Il Risk Buffer in azione</h3>
-                    <p class="rischi-narrative">Il tool confronta la data stimata con la baseline e mostra quanto buffer hai consumato. Simula l'avanzamento per vedere come reagisce il piano.</p>
-                    <div class="sched-buffer" id="sched-buffer">
-                        <div class="sched-buffer-label">
-                            <span>Risk Buffer consumato</span>
-                            <strong id="sched-buffer-val">0%</strong>
-                        </div>
-                        <div class="sched-buffer-bar">
-                            <div class="sched-buffer-fill" id="sched-buffer-fill"></div>
-                        </div>
-                        <div class="sched-buffer-status" id="sched-buffer-status">Buffer integro. Monitora l'avanzamento ad ogni statusing.</div>
-                        <div class="sched-buffer-actions">
-                            <button type="button" class="sched-btn sched-btn-primary" id="sched-consume">Simula consumo (+15%)</button>
-                            <button type="button" class="sched-btn" id="sched-reset">Reset</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1432,31 +1374,6 @@ document.addEventListener('DOMContentLoaded', () => {
         container.querySelectorAll('.mc-action-card').forEach(card => {
             card.addEventListener('click', (e) => e.stopPropagation());
         });
-
-        // Simulatore interattivo del Risk Buffer
-        const wrap = container.querySelector('#sched-buffer');
-        const fill = container.querySelector('#sched-buffer-fill');
-        const val = container.querySelector('#sched-buffer-val');
-        const status = container.querySelector('#sched-buffer-status');
-        let buffer = 0;
-
-        const render = () => {
-            if (fill) fill.style.width = `${buffer}%`;
-            if (val) val.textContent = `${buffer}%`;
-            wrap.classList.remove('level-mid', 'level-high');
-            let msg;
-            if (buffer === 0) msg = "Buffer integro. Monitora l'avanzamento ad ogni statusing.";
-            else if (buffer < 50) msg = 'Consumo sotto controllo: il piano regge.';
-            else if (buffer < 80) { wrap.classList.add('level-mid'); msg = 'Attenzione: il buffer si sta riducendo, presidia il percorso critico.'; }
-            else if (buffer < 100) { wrap.classList.add('level-high'); msg = 'Buffer quasi esaurito: prepara i dati oggettivi per gli stakeholder.'; }
-            else { wrap.classList.add('level-high'); msg = '⚠️ Buffer esaurito. Usa i dati per chiedere un trade-off e riequilibrare il piano.'; }
-            if (status) status.textContent = msg;
-        };
-
-        const consumeBtn = container.querySelector('#sched-consume');
-        const resetBtn = container.querySelector('#sched-reset');
-        if (consumeBtn) consumeBtn.addEventListener('click', (e) => { e.stopPropagation(); buffer = Math.min(100, buffer + 15); render(); });
-        if (resetBtn) resetBtn.addEventListener('click', (e) => { e.stopPropagation(); buffer = 0; render(); });
 
         setupRevealObserver(container);
     }
@@ -1473,7 +1390,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 <div class="rischi-reveal expanded-section">
                     <h3 class="rischi-section-title">Le tre leve indirette</h3>
-                    <p class="rischi-narrative">Seleziona ciascuna leva per capire come agisce sui costi.</p>
                     <div class="cost-levers">
                         <div class="cost-lever" data-key="scope" tabindex="0" role="button" aria-label="Scope">
                             <span class="cost-lever-icon">📐</span>
@@ -1497,17 +1413,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3 class="rischi-section-title">Monitoraggio Mensile Obbligatorio</h3>
                     <p class="rischi-narrative">Traccia i costi almeno <strong>una volta al mese</strong>. Verifica le spese per materiali e servizi, ma soprattutto tieni sotto controllo le ore del personale tramite i <em>timesheet</em>.</p>
                     <div class="risk-register-grid">
-                        <div class="risk-register-card" tabindex="0">
+                        <div class="risk-register-card">
                             <span class="risk-register-icon">🧱</span>
                             <strong>Materiali</strong>
                             <p>Verifica le spese sostenute per i materiali di progetto.</p>
                         </div>
-                        <div class="risk-register-card" tabindex="0">
+                        <div class="risk-register-card">
                             <span class="risk-register-icon">🛠️</span>
                             <strong>Servizi</strong>
                             <p>Controlla i costi di servizi esterni e forniture.</p>
                         </div>
-                        <div class="risk-register-card" tabindex="0">
+                        <div class="risk-register-card">
                             <span class="risk-register-icon">⏲️</span>
                             <strong>Ore personale</strong>
                             <p>Tieni sotto controllo l'impegno reale tramite i timesheet.</p>
@@ -1542,8 +1458,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="expanded-title-area">
                     <span class="expanded-icon-container">${data.icon}</span>
                     <div>
-                        <span class="expanded-category-tag">Monitoring &amp; Control</span>
-                        <h2>MONITORAGGIO</h2>
+                        <h2>MONITORING</h2>
                     </div>
                 </div>
                 <button class="central-close-btn" id="monitoraggio-close-btn" aria-label="Chiudi finestra">
@@ -1556,7 +1471,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             <div class="expanded-body">
                 <div class="rischi-reveal rischi-lead">
-                    <h3 class="rischi-section-title">Lo scopo del Monitoring &amp; Control</h3>
+                    <h3 class="rischi-section-title">Lo scopo del Monitoring</h3>
                     <p class="rischi-narrative">L'obiettivo principale è <span class="rischi-highlight">sapere esattamente come sta procedendo il progetto</span> e, in secondo luogo, agire per mantenere le performance il più possibile allineate al piano originale.</p>
                 </div>
 
@@ -1576,7 +1491,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="mc-action-num">02</div>
                             <div class="mc-action-icon">📐</div>
                             <div class="mc-action-text">
-                                <h4>Gestisci lo Scope Creep <span class="mc-fail-badge">Causa #2 di fallimento</span></h4>
+                                <h4>Gestisci lo Scope Creep</h4>
                                 <p>Nessuna modifica allo scope senza un'analisi d'impatto completa e una decisione ponderata. Negozia sempre le attività esistenti per bilanciare l'ingresso di nuovo lavoro.</p>
                             </div>
                         </div>
@@ -1584,7 +1499,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="mc-action-num">03</div>
                             <div class="mc-action-icon">👥</div>
                             <div class="mc-action-text">
-                                <h4>Coinvolgi gli utenti <span class="mc-fail-badge">Causa #3 di fallimento</span></h4>
+                                <h4>Coinvolgi gli utenti</h4>
                                 <p>Fai revisionare tutti i design dagli utenti per raccogliere feedback fondamentali e individuare mancanze prima di creare i deliverable finali.</p>
                             </div>
                         </div>
@@ -1636,38 +1551,59 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <marker id="tcArrowL" markerWidth="10" markerHeight="10" refX="1" refY="3" orient="auto" markerUnits="strokeWidth">
                                         <path d="M6,0 L0,3 L6,6 Z" class="tc-arrowhead"></path>
                                     </marker>
+                                    <marker id="tcArrowBlack" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+                                        <path d="M0,0 L6,3 L0,6 Z" class="tc-arrow-black-head"></path>
+                                    </marker>
                                 </defs>
 
                                 <polygon class="tc-fill" points="210,45 55,330 365,330"></polygon>
                                 <line class="tc-guide" x1="210" y1="45" x2="210" y2="330"></line>
+                                <line class="tc-guide" x1="55" y1="330" x2="287.5" y2="187.5"></line>
+                                <line class="tc-guide" x1="365" y1="330" x2="132.5" y2="187.5"></line>
+
+                                <!-- Frecce di Tensione (come da immagine di riferimento) -->
+                                <line class="tc-image-arrow tc-image-arrow-scope-time" x1="210" y1="322" x2="140" y2="198" marker-end="url(#tcArrowBlack)"></line>
+                                <line class="tc-image-arrow tc-image-arrow-scope-cost" x1="210" y1="322" x2="280" y2="198" marker-end="url(#tcArrowBlack)"></line>
+                                <line class="tc-image-arrow tc-image-arrow-time-cost" x1="142" y1="187.5" x2="278" y2="187.5" marker-start="url(#tcArrowBlack)" marker-end="url(#tcArrowBlack)"></line>
+                                <line class="tc-image-arrow tc-image-arrow-time-risk" x1="142" y1="193" x2="180" y2="217" marker-end="url(#tcArrowBlack)"></line>
 
                                 <g class="tc-constraint tc-time" data-constraint="time" tabindex="0" role="button" aria-label="Tempo - Schedule">
+                                    <polygon class="tc-sector" points="210,235 210,45 55,330"></polygon>
                                     <line class="tc-hit" x1="210" y1="45" x2="55" y2="330"></line>
                                     <line class="tc-edge" x1="210" y1="45" x2="55" y2="330"></line>
-                                    <text class="tc-label" x="118" y="180" text-anchor="middle" transform="rotate(-61 118 180)">Time</text>
+                                    <g class="tc-label-group" transform="rotate(-61 118 180)">
+                                        <rect class="tc-label-bg" x="73" y="158" width="90" height="32" rx="16"></rect>
+                                        <text class="tc-label" x="118" y="181" text-anchor="middle">Time</text>
+                                    </g>
                                 </g>
 
                                 <g class="tc-constraint tc-cost" data-constraint="cost" tabindex="0" role="button" aria-label="Costi - Budget">
+                                    <polygon class="tc-sector" points="210,235 210,45 365,330"></polygon>
                                     <line class="tc-hit" x1="210" y1="45" x2="365" y2="330"></line>
                                     <line class="tc-edge" x1="210" y1="45" x2="365" y2="330"></line>
-                                    <text class="tc-label" x="302" y="180" text-anchor="middle" transform="rotate(61 302 180)">Cost</text>
+                                    <g class="tc-label-group" transform="rotate(61 302 180)">
+                                        <rect class="tc-label-bg" x="257" y="158" width="90" height="32" rx="16"></rect>
+                                        <text class="tc-label" x="302" y="181" text-anchor="middle">Cost</text>
+                                    </g>
                                 </g>
 
                                 <g class="tc-constraint tc-scope" data-constraint="scope" tabindex="0" role="button" aria-label="Ambito - Scope">
+                                    <polygon class="tc-sector" points="210,235 55,330 365,330"></polygon>
                                     <line class="tc-hit" x1="55" y1="330" x2="365" y2="330"></line>
                                     <line class="tc-edge" x1="55" y1="330" x2="365" y2="330"></line>
+                                    <rect class="tc-label-bg" x="160" y="337" width="100" height="32" rx="16"></rect>
                                     <text class="tc-label" x="210" y="360" text-anchor="middle">Scope</text>
                                 </g>
 
                                 <g class="tc-constraint tc-risk" data-constraint="risk" tabindex="0" role="button" aria-label="Rischio">
                                     <line class="tc-hit" x1="140" y1="214" x2="280" y2="214"></line>
-                                    <line class="tc-arrow" x1="148" y1="214" x2="272" y2="214" marker-start="url(#tcArrowL)" marker-end="url(#tcArrowR)"></line>
+                                    <rect class="tc-risk-bg" x="170" y="181" width="80" height="28" rx="14"></rect>
                                     <text class="tc-risk-label" x="210" y="202" text-anchor="middle">Risk</text>
                                 </g>
                             </svg>
                         </div>
                         <div class="tc-desc" id="tc-desc">
-                            <strong>Tre vincoli, un equilibrio.</strong> Tempo, Costi e Ambito sono legati: muoverne uno costringe a muovere gli altri. Al centro, il Rischio cresce a ogni squilibrio. Seleziona un vincolo sul diagramma per esplorarlo.
+                            <strong>Tre vincoli, un equilibrio.</strong> Tempo, Costi e Ambito sono legati: muoverne uno costringe a muovere gli altri. Al centro, il Rischio cresce a ogni squilibrio.
                         </div>
                     </div>
                 </div>
@@ -1738,9 +1674,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (el) el.classList.add('is-selected');
             if (tcDescEl && tcContent[key]) {
                 tcDescEl.style.opacity = '0';
+                tcDescEl.style.transform = 'translateY(8px)';
                 setTimeout(() => {
                     tcDescEl.innerHTML = tcContent[key];
                     tcDescEl.style.opacity = '1';
+                    tcDescEl.style.transform = 'translateY(0)';
                 }, 160);
             }
         };
