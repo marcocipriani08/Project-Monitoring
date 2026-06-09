@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Monitoring — Corporate Strategic Review</title>
+    
+    <!-- Meta tag SEO -->
+    <meta name="description" content="Piattaforma interattiva di livello executive per il monitoraggio strategico dei progetti. Analisi di tempi, costi, ambito, rischi e criticità.">
+    <meta name="author" content="Antigravity">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@800&display=swap" rel="stylesheet">
+    
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <!-- Griglia di Sfondo e Cerchi Fluttuanti -->
+    <div class="bg-grid"></div>
+    <div class="floating-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+        <div class="blob blob-5"></div>
+    </div>
+
+    <!-- Schermata di Onboarding Cinematografica (Intro) -->
+    <div id="intro-screen" class="intro-screen">
+        <div class="intro-content">
+            <h1 class="intro-title" id="intro-logo">PROJECT MONITORING</h1>
+            <p class="intro-subtitle" id="intro-sub">PREMI PER ENTRARE</p>
+        </div>
+    </div>
+
+    <!-- Struttura della Dashboard Principale -->
+    <div id="dashboard" class="dashboard-container hidden">
+        <!-- Header Superiore -->
+        <header class="dashboard-header">
+            <div class="logo-area">
+                <span class="logo-icon" id="header-logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="9" stroke="var(--color-primary)" stroke-width="2"/>
+                        <circle cx="12" cy="12" r="3" fill="var(--color-accent)"/>
+                        <path d="M12 3V6" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M12 18V21" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M3 12H6" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M18 12H21" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <h1 class="header-title" id="header-title-text">PROJECT MONITORING</h1>
+            </div>
+            
+            <div class="controls-area">
+                <!-- Indicatore Salute Progetto -->
+                <div class="health-badge">
+                    <span class="status-indicator-green"></span>
+                    <span>Stato Progetto: Ottimale</span>
+                </div>
+                
+                <!-- Toggle Switch Tema Light/Dark -->
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Cambia tema colore">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Contenuto Centrale: Mind Map -->
+        <main class="mindmap-viewport" id="mindmap-viewport">
+            <div class="mindmap-container" id="mindmap-container">
+                <!-- Layer Linee di Connessione SVG -->
+                <svg class="connections-svg" id="connections-svg" xmlns="http://www.w3.org/2000/svg">
+                    <!-- I path verranno generati dinamicamente da Javascript -->
+                </svg>
+
+                <!-- NODO CENTRALE -->
+                <div class="node-central" id="node-central">
+                    <div class="node-central-pulse"></div>
+                    <div class="node-central-content">
+                        <!-- Vista Compatta (Stato di riposo) -->
+                        <div class="compact-view">
+                            <h2>MONITORAGGIO</h2>
+                        </div>
+                        
+                        <!-- Vista Espansa (Esplosione al click) -->
+                        <div class="expanded-view">
+                            <div class="expanded-header">
+                                <div class="expanded-title-area">
+                                    <span class="expanded-icon-container">
+                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="9" stroke="var(--color-primary)" stroke-width="2"/>
+                                            <circle cx="12" cy="12" r="3" fill="var(--color-accent)"/>
+                                            <path d="M12 3V6" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round"/>
+                                            <path d="M12 18V21" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round"/>
+                                            <path d="M3 12H6" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round"/>
+                                            <path d="M18 12H21" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round"/>
+                                        </svg>
+                                    </span>
+                                    <div>
+                                        <span class="expanded-category-tag">Hub Strategico</span>
+                                        <h2>MONITORAGGIO</h2>
+                                    </div>
+                                </div>
+                                <button id="central-close-btn" class="central-close-btn" aria-label="Chiudi finestra">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <div class="expanded-body">
+                                <p class="expanded-lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                
+                                <div class="expanded-section">
+                                    <h3>STATO DI AVANZAMENTO GENERALE</h3>
+                                    <div class="expanded-kpi-grid">
+                                        <div class="kpi-card">
+                                            <span class="kpi-value">92%</span>
+                                            <span class="kpi-label">Performance Globale</span>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <span class="kpi-value">A+</span>
+                                            <span class="kpi-label">Valutazione Rischio</span>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <span class="kpi-value">Ottimale</span>
+                                            <span class="kpi-label">Milestone Progetto</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="expanded-section">
+                                    <h3>DESCRIZIONE STRATEGICA DETTAGLIATA</h3>
+                                    <p class="expanded-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Aliquam lorem ante, eleifend at nisl in, convallis ultrices diam. Proin vel congue nulla, sed condimentum sapien. Vestibulum ut dolor feugiat, laoreet lectus quis, aliquet ipsum. In varius turpis a justo gravida, a pulvinar dui mollis.</p>
+                                    <p class="expanded-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                                </div>
+
+                                <div class="expanded-section">
+                                    <h3>ATTIVITÀ CHIAVE ATTIVE</h3>
+                                    <ul class="expanded-activities">
+                                        <li><span class="bullet">→</span> <div><strong>Allineamento Flussi:</strong> Sincronizzazione automatica dei dati provenienti da tempi, costi e rischi.</div></li>
+                                        <li><span class="bullet">→</span> <div><strong>Reporting Direzionale:</strong> Consolidamento periodico dei report prestazionali per lo steering committee.</div></li>
+                                        <li><span class="bullet">→</span> <div><strong>Mitigazione Rischi:</strong> Rilevamento precoce di scostamenti operativi con notifica immediata al team.</div></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="expanded-footer">
+                                <button class="expanded-action-btn" id="central-action-btn">Esporta Report Direzionale .PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6 NODI PERIMETRALI -->
+                <!-- 1. TEMPO (Time) -->
+                <div class="node-outer" id="node-tempo" data-node-id="tempo">
+                    <!-- Clock SVG (Left) -->
+                    <svg class="tab-hover-subitem subitem-left" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <img src="assets/schedule.png" class="tab-hover-image" alt="Schedule Management">
+                    <!-- Calendar SVG (Right) -->
+                    <svg class="tab-hover-subitem subitem-right" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <div class="node-outer-inner">
+                        <div class="compact-view">
+                            <div class="node-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                            </div>
+                            <h3>SCHEDULE MANAGEMENT</h3>
+                            <div class="node-preview">Statusing & Critical Path</div>
+                        </div>
+                        <div class="expanded-view"></div>
+                    </div>
+                </div>
+
+                <!-- 2. COSTI (Cost) -->
+                <div class="node-outer" id="node-costi" data-node-id="costi">
+                    <!-- Coin SVG (Left) -->
+                    <svg class="tab-hover-subitem subitem-left" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                    </svg>
+                    <img src="assets/cost.png" class="tab-hover-image" alt="Cost Management">
+                    <!-- Banknote SVG (Right) -->
+                    <svg class="tab-hover-subitem subitem-right" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M6 12h.01M18 12h.01"></path>
+                    </svg>
+                    <div class="node-outer-inner">
+                        <div class="compact-view">
+                            <div class="node-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                </svg>
+                            </div>
+                            <h3>COST MANAGEMENT</h3>
+                            <div class="node-preview">Indirect Cost Levers</div>
+                        </div>
+                        <div class="expanded-view"></div>
+                    </div>
+                </div>
+
+                <!-- 3. AMBITO (Scope) -->
+                <div class="node-outer" id="node-ambito" data-node-id="ambito">
+                    <!-- Document SVG (Left) -->
+                    <svg class="tab-hover-subitem subitem-left" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                    </svg>
+                    <img src="assets/scope.png" class="tab-hover-image" alt="Scope Management">
+                    <!-- Bounding Box / Ruler (Right) -->
+                    <svg class="tab-hover-subitem subitem-right" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="9" y1="3" x2="9" y2="21"></line>
+                        <line x1="15" y1="3" x2="15" y2="21"></line>
+                    </svg>
+                    <div class="node-outer-inner">
+                        <div class="compact-view">
+                            <div class="node-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="9" y1="3" x2="9" y2="21"></line>
+                                    <line x1="15" y1="3" x2="15" y2="21"></line>
+                                    <line x1="3" y1="9" x2="21" y2="9"></line>
+                                    <line x1="3" y1="15" x2="21" y2="15"></line>
+                                </svg>
+                            </div>
+                            <h3>SCOPE MANAGEMENT</h3>
+                            <div class="node-preview">Scope Creep & Change Control</div>
+                        </div>
+                        <div class="expanded-view"></div>
+                    </div>
+                </div>
+
+                <!-- 4. RISCHI (Risk) -->
+                <div class="node-outer" id="node-rischi" data-node-id="rischi">
+                    <!-- Warning SVG (Left) -->
+                    <svg class="tab-hover-subitem subitem-left" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    <img src="assets/risk.png" class="tab-hover-image" alt="Rischi">
+                    <!-- Padlock SVG (Right) -->
+                    <svg class="tab-hover-subitem subitem-right" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <div class="node-outer-inner">
+                        <div class="compact-view">
+                            <div class="node-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                            </div>
+                            <h3>RISCHI</h3>
+                            <div class="node-preview">Mitigation & Alignment</div>
+                        </div>
+                        <div class="expanded-view"></div>
+                    </div>
+                </div>
+
+                <!-- 5. ISSUES -->
+                <div class="node-outer" id="node-issues" data-node-id="issues">
+                    <!-- Gear SVG (Left) -->
+                    <svg class="tab-hover-subitem subitem-left" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                    <img src="assets/issues.png" class="tab-hover-image" alt="Issues">
+                    <!-- Wrench SVG (Right) -->
+                    <svg class="tab-hover-subitem subitem-right" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                    </svg>
+                    <div class="node-outer-inner">
+                        <div class="compact-view">
+                            <div class="node-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                </svg>
+                            </div>
+                            <h3>ISSUES</h3>
+                            <div class="node-preview">Detection & Resolution</div>
+                        </div>
+                        <div class="expanded-view"></div>
+                    </div>
+                </div>
+
+                <!-- 6. MONTHLY STATUS REVIEW -->
+                <div class="node-outer" id="node-msr" data-node-id="msr">
+                    <!-- Chart SVG (Left) -->
+                    <svg class="tab-hover-subitem subitem-left" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>
+                    <img src="assets/msr.png" class="tab-hover-image" alt="Monthly Status Review">
+                    <!-- Chat SVG (Right) -->
+                    <svg class="tab-hover-subitem subitem-right" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <div class="node-outer-inner">
+                        <div class="compact-view">
+                            <div class="node-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                            </div>
+                            <h3>MONTHLY STATUS REVIEW</h3>
+                            <div class="node-preview">Status Meeting & Verbale 1-Page</div>
+                        </div>
+                        <div class="expanded-view"></div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Istruzioni in Basso -->
+        <footer class="dashboard-footer">
+            <p>Seleziona un nodo strategico per aprire la scheda di controllo e visualizzare le attività chiave.</p>
+        </footer>
+    </div>
+
+    <!-- Pannello Informativo Laterale (Slide-In) -->
+    <aside id="side-panel" class="side-panel">
+        <div class="side-panel-header">
+            <div class="side-panel-title-area">
+                <span class="panel-icon-container" id="panel-icon">
+                    <!-- Icona caricata dinamicamente -->
+                </span>
+                <div>
+                    <span class="panel-category-tag">Area Strategica</span>
+                    <h2 id="panel-title">Titolo Pannello</h2>
+                </div>
+            </div>
+            <button id="panel-close" class="panel-close-btn" aria-label="Chiudi pannello">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="side-panel-content">
+            <p id="panel-description" class="panel-description">Descrizione dettagliata dell'area e del suo impatto strategico sulle scadenze globali del progetto.</p>
+            
+            <div class="panel-section">
+                <h3>ATTIVITÀ CHIAVE</h3>
+                <ul id="panel-activities" class="activities-list">
+                    <!-- Attività caricate dinamicamente -->
+                </ul>
+            </div>
+
+            <!-- Widget Interattivi per Premium Dashboard Feeling -->
+            <div class="panel-section widget-section">
+                <h3>SIMULATORE PERFORMANCE</h3>
+                <div class="perf-widget">
+                    <div class="perf-bar-container">
+                        <div class="perf-label">
+                            <span>Efficienza di Esecuzione</span>
+                            <span id="widget-perf-value">92%</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div id="widget-progress-fill" class="progress-bar-fill" style="width: 92%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-checkboxes">
+                        <label class="custom-checkbox-container">
+                            <input type="checkbox" checked class="widget-checkbox">
+                            <span class="checkmark"></span>
+                            <span class="checkbox-text">Processi standardizzati e allineati</span>
+                        </label>
+                        <label class="custom-checkbox-container">
+                            <input type="checkbox" class="widget-checkbox" id="widget-toggle-critical">
+                            <span class="checkmark"></span>
+                            <span class="checkbox-text">Segnala anomalia critica al Team</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-section alert-section" id="panel-status-card">
+                <div class="status-card-header">
+                    <span class="status-card-dot"></span>
+                    <span class="status-card-title">Stato: Sotto Controllo</span>
+                </div>
+                <p class="status-card-desc" id="panel-status-text">Tutte le attività di questa sezione risultano in linea con la programmazione approvata.</p>
+            </div>
+        </div>
+        
+        <div class="side-panel-footer">
+            <button id="panel-action-btn" class="panel-action-btn">Esporta Report .PDF</button>
+        </div>
+    </aside>
+
+    <!-- Overlay per oscurare lo sfondo all'apertura del pannello -->
+    <div id="panel-overlay" class="panel-overlay"></div>
+
+    <!-- Script Javascript -->
+    <script src="app.js"></script>
+</body>
+</html>
