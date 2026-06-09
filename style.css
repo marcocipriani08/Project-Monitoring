@@ -277,7 +277,7 @@ body.dark-theme .intro-screen.transition-active {
 }
 
 /* Dissolvi dolcemente la dashboard circostante */
-.dashboard-container.central-expanded .dashboard-header,
+.dashboard-container.central-expanded .theme-toggle-btn,
 .dashboard-container.central-expanded .dashboard-footer {
     filter: blur(10px) grayscale(0.3);
     opacity: 0 !important;
@@ -402,6 +402,10 @@ body.dark-theme .dashboard-header {
 
 /* Theme Toggle Button */
 .theme-toggle-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 100;
     background: none;
     border: 1px solid var(--border-color-muted);
     width: 40px;
@@ -413,6 +417,7 @@ body.dark-theme .dashboard-header {
     cursor: pointer;
     color: var(--text-primary);
     background-color: var(--bg-card);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -1758,7 +1763,7 @@ body.dark-theme .panel-action-btn {
 }
 
 /* Dissolvenza morbida di ritorno per header e footer */
-.dashboard-container.central-closing .dashboard-header,
+.dashboard-container.central-closing .theme-toggle-btn,
 .dashboard-container.central-closing .dashboard-footer {
     transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
                 opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;

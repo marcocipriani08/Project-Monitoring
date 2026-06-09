@@ -175,11 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
             drawConnections(true); // passa true per abilitare l'animazione di disegno
         }, 450);
 
-        // Rendi visibile l'icona reale dell'header ed il titolo nell'header
-        setTimeout(() => {
-            document.getElementById('header-logo-icon').classList.add('visible');
-            document.getElementById('header-title-text').classList.add('visible');
-        }, 600);
+
         
         // Rimuovi la schermata intro dallo schermo al termine della transizione
         setTimeout(() => {
