@@ -7,13 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Dati dei nodi strategici per la compilazione dei pannelli (Italiano Executive)
     const nodeData = {
         tempo: {
-            title: "SCHEDULE MANAGEMENT",
-            category: "Gestione Tempistiche",
+            title: "TIME",
+            category: "Schedule management",
             icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`,
             description: "Ottimizzazione della pianificazione temporale e presidio costante delle milestone. Analisi strategica del percorso critico (Critical Path) per neutralizzare i colli di bottiglia e ottimizzare la produttività del team.",
             activities: [
                 "<strong>Monitoraggio Giornaliero (Everyday Tracking):</strong> Aggiornamento costante dell'avanzamento dei task operativi e allineamento con i capiprogetto per identificare deviazioni anticipate.",
-                "<strong>Tracciamento Orario (Hourly Monitoring):</strong> Analisi granulare dell'allocazione oraria sulle attività a massimo rischio per garantire la massima efficienza dei flussi operativi."
+                "<strong>Tracciamento Orario (Hourly Monitoring):</strong> Analisi granulare dell'allocazione oraria sulle attività a massimo rischio per garantire la massima eficiência dei flussi operativi."
             ],
             perfVal: 94,
             statusLabel: "Sotto Controllo",
@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
             isCritical: false
         },
         costi: {
-            title: "COST MANAGEMENT",
-            category: "Controllo Finanziario",
+            title: "COST",
+            category: "Cost Management",
             icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>`,
             description: "Supervisione dei flussi di cassa del progetto. Monitoraggio costante delle spese correnti rispetto al budget stimato per garantire la profittabilità globale e prevenire fenomeni di budget overrun.",
             activities: [
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         ambito: {
             title: "SCOPE",
-            category: "",
+            category: "Scope Creep & Change Control",
             icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>`,
             description: "Presidio strutturato dei confini operativi del progetto. Definizione formale dei deliverable per prevenire variazioni non strutturate dei requisiti e garantire l'aderenza agli obiettivi di business contrattuali.",
             activities: [
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { left: '14%', top: '50%' }
     ];
 
-    const nodeIds = ['tempo', 'costi', 'ambito', 'rischi', 'issues', 'msr'];
+    const nodeIds = ['ambito', 'rischi', 'issues', 'msr', 'costi', 'tempo'];
     let currentSlots = [...nodeIds];
 
     // Elementi DOM principali
@@ -251,9 +251,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Mappa dei ritardi per allinearsi allo staggering dei nodi in CSS
                 const delays = {
-                    tempo: '0.4s',
-                    costi: '0.5s',
-                    ambito: '0.6s',
+                    ambito: '0.4s',
+                    tempo: '0.5s',
+                    costi: '0.6s',
                     rischi: '0.7s',
                     issues: '0.8s',
                     msr: '0.9s'
@@ -527,19 +527,19 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Vista interattiva dedicata al pannello SCOPE MANAGEMENT
+        // Vista interattiva dedicata al pannello SCOPE
         if (nodeId === 'ambito') {
             renderScopeView(expandedContainer, data);
             return;
         }
 
-        // Vista interattiva dedicata al pannello SCHEDULE MANAGEMENT
+        // Vista interattiva dedicata al pannello TIME
         if (nodeId === 'tempo') {
             renderScheduleView(expandedContainer, data);
             return;
         }
 
-        // Vista interattiva dedicata al pannello COST MANAGEMENT
+        // Vista interattiva dedicata al pannello COST
         if (nodeId === 'costi') {
             renderCostView(expandedContainer, data);
             return;
@@ -898,7 +898,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 <div class="rischi-reveal expanded-section">
                     <h3 class="rischi-section-title">Il protocollo in 4 passi</h3>
-                    <p class="rischi-narrative">Ogni issue va affrontata seguendo una sequenza chiara. Clicca su ciascuno step per esplorarlo.</p>
+                    <p class="rischi-narrative">Ogni issue va affrontata seguendo una sequenza chiara.</p>
                     <div class="issue-flow">
                         <div class="issue-step" data-step="1" tabindex="0">
                             <div class="issue-step-number">01</div>
@@ -1004,18 +1004,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 <div class="rischi-reveal expanded-section">
                     <h3 class="rischi-section-title">Durante il meeting: i 5 ambiti</h3>
-                    <p class="rischi-narrative">Durante ogni review si scorrono rapidamente cinque ambiti chiave. Clicca su ciascuna voce per spuntarla — la checklist tiene il conto e ti dice quando sei pronto per redigere il verbale.</p>
-
-                    <div class="msr-checklist-progress">
-                        <div class="msr-progress-label">
-                            <span>Avanzamento review</span>
-                            <strong id="msr-progress-count">0 / 5</strong>
-                        </div>
-                        <div class="msr-progress-bar">
-                            <div class="msr-progress-fill" id="msr-progress-fill"></div>
-                        </div>
-                        <div class="msr-progress-status" id="msr-progress-status">Inizia a spuntare i 5 ambiti per completare la review.</div>
-                    </div>
+                    <p class="rischi-narrative">Durante ogni review si scorrono rapidamente cinque ambiti chiave. Clicca su ciascuna voce per spuntarla.</p>
 
                     <div class="msr-checklist">
                         <div class="msr-check-item" data-msr-item="scope" tabindex="0" role="button" aria-pressed="false">
@@ -1138,36 +1127,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Checklist con contatore di progresso
+        // Checklist interattiva
         const checkItems = container.querySelectorAll('.msr-check-item');
-        const progressCount = container.querySelector('#msr-progress-count');
-        const progressFill = container.querySelector('#msr-progress-fill');
-        const progressStatus = container.querySelector('#msr-progress-status');
-        const total = checkItems.length;
-
-        const statusMessages = {
-            0: 'Inizia a spuntare i 5 ambiti per completare la review.',
-            1: 'Bene, hai cominciato. Procedi con il prossimo ambito.',
-            2: 'Buon ritmo: due ambiti già rivisti.',
-            3: 'Sei a metà strada — continua così.',
-            4: 'Ultimo ambito da rivedere, ci sei quasi!',
-            5: '✓ Review completata. Sei pronto per redigere il verbale di 1 pagina.'
-        };
-
-        const updateProgress = () => {
-            const checked = container.querySelectorAll('.msr-check-item.is-checked').length;
-            if (progressCount) progressCount.textContent = `${checked} / ${total}`;
-            if (progressFill) progressFill.style.width = `${(checked / total) * 100}%`;
-            if (progressStatus) progressStatus.textContent = statusMessages[checked] || statusMessages[0];
-
-            const wrapper = container.querySelector('.msr-checklist-progress');
-            if (wrapper) wrapper.classList.toggle('is-complete', checked === total);
-        };
 
         const toggleCheck = (item) => {
             const checked = item.classList.toggle('is-checked');
             item.setAttribute('aria-pressed', checked ? 'true' : 'false');
-            updateProgress();
         };
 
         checkItems.forEach(item => {
@@ -1265,7 +1230,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Vista interattiva: SCOPE MANAGEMENT (ambito)
+    // Vista interattiva: SCOPE (ambito)
     function renderScopeView(container, data) {
         container.innerHTML = `
             ${buildExpandedHeader(data, 'ambito-close-btn')}
@@ -1319,7 +1284,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setupRevealObserver(container);
     }
 
-    // Vista interattiva: SCHEDULE MANAGEMENT (tempo)
+    // Vista interattiva: TIME (tempo)
     function renderScheduleView(container, data) {
         container.innerHTML = `
             ${buildExpandedHeader(data, 'tempo-close-btn')}
@@ -1378,7 +1343,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setupRevealObserver(container);
     }
 
-    // Vista interattiva: COST MANAGEMENT (costi)
+    // Vista interattiva: COST (costi)
     function renderCostView(container, data) {
         container.innerHTML = `
             ${buildExpandedHeader(data, 'costi-close-btn')}

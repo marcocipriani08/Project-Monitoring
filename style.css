@@ -1098,17 +1098,17 @@ body.dark-theme .expanded-action-btn {
     opacity: 1;
 }
 
-.mindmap-container.active #node-tempo {
+.mindmap-container.active #node-ambito {
     transform: translate(-50%, -50%) scale(1);
     transition-delay: 0.5s;
 }
 
-.mindmap-container.active #node-costi {
+.mindmap-container.active #node-tempo {
     transform: translate(-50%, -50%) scale(1);
     transition-delay: 0.6s;
 }
 
-.mindmap-container.active #node-ambito {
+.mindmap-container.active #node-costi {
     transform: translate(-50%, -50%) scale(1);
     transition-delay: 0.7s;
 }
@@ -1128,34 +1128,34 @@ body.dark-theme .expanded-action-btn {
     transition-delay: 1.0s;
 }
 
-#node-tempo {
+#node-ambito {
     left: 20%;
     top: 22%;
 }
 
-#node-costi {
-    left: 80%;
-    top: 22%;
+#node-tempo {
+    left: 14%;
+    top: 50%;
 }
 
-#node-ambito {
-    left: 86%;
-    top: 50%;
+#node-costi {
+    left: 20%;
+    top: 78%;
 }
 
 #node-rischi {
     left: 80%;
-    top: 78%;
+    top: 22%;
 }
 
 #node-issues {
-    left: 20%;
-    top: 78%;
+    left: 86%;
+    top: 50%;
 }
 
 #node-msr {
-    left: 14%;
-    top: 50%;
+    left: 80%;
+    top: 78%;
 }
 
 .node-outer-inner {
@@ -1781,13 +1781,13 @@ body.dark-theme .panel-action-btn {
 }
 
 /* Ritardi sfalsati in senso orario per i nodi esterni */
-.dashboard-container.central-closing #node-tempo {
+.dashboard-container.central-closing #node-ambito {
     transition-delay: 0s !important;
 }
-.dashboard-container.central-closing #node-costi {
+.dashboard-container.central-closing #node-tempo {
     transition-delay: 0.08s !important;
 }
-.dashboard-container.central-closing #node-ambito {
+.dashboard-container.central-closing #node-costi {
     transition-delay: 0.16s !important;
 }
 .dashboard-container.central-closing #node-rischi {
@@ -1892,17 +1892,17 @@ body.dark-theme .panel-action-btn {
         opacity: 1 !important;
     }
 
-    .mindmap-container.active #node-tempo {
+    .mindmap-container.active #node-ambito {
         transform: scale(1) !important;
         transition-delay: 0.3s;
     }
 
-    .mindmap-container.active #node-costi {
+    .mindmap-container.active #node-tempo {
         transform: scale(1) !important;
         transition-delay: 0.4s;
     }
 
-    .mindmap-container.active #node-ambito {
+    .mindmap-container.active #node-costi {
         transform: scale(1) !important;
         transition-delay: 0.5s;
     }
