@@ -1890,7 +1890,10 @@ document.addEventListener('DOMContentLoaded', () => {
         { el: document.querySelector('.blob-2'), x: 65, y: 45, vx: -0.03, vy: 0.04 },
         { el: document.querySelector('.blob-3'), x: 40, y: 70, vx: 0.03, vy: -0.03 },
         { el: document.querySelector('.blob-4'), x: 25, y: 30, vx: -0.04, vy: -0.02 },
-        { el: document.querySelector('.blob-5'), x: 55, y: 20, vx: 0.02, vy: 0.04 }
+        { el: document.querySelector('.blob-5'), x: 55, y: 20, vx: 0.02, vy: 0.04 },
+        { el: document.querySelector('.blob-6'), x: 70, y: 10, vx: -0.02, vy: -0.03 },
+        { el: document.querySelector('.blob-7'), x: 15, y: 75, vx: 0.03, vy: 0.02 },
+        { el: document.querySelector('.blob-8'), x: 80, y: 80, vx: -0.03, vy: -0.02 }
     ];
 
     let speedMultiplier = 1.0;
