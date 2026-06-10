@@ -1237,12 +1237,12 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="expanded-body">
                 <div class="rischi-reveal rischi-lead">
                     <p class="rischi-narrative">La cosa più importante che un Project Manager possa fare per controllare lo scope è <span class="rischi-highlight">gestire proattivamente lo «scope creep»</span> (la deviazione dai requisiti originali) puntando a migliorare costantemente il risultato.</p>
-                    <p class="rischi-narrative">La strategia vincente? <strong>Definire l'intero perimetro del progetto</strong> fin dalla fase iniziale di pianificazione.</p>
+                    <p class="rischi-narrative">La strategia vincente? <strong>Definire l'intero perimetro del progetto</strong> fin dalla fase iniziale di pianificazione tramite la raccolta di tutti i requisiti.</p>
                 </div>
 
                 <div class="rischi-reveal expanded-section">
                     <h3 class="rischi-section-title">Il processo di Change Control</h3>
-                    <p class="rischi-narrative">È fondamentale istituire un processo rigoroso: ogni modifica richiesta deve essere <strong>formalizzata su un apposito documento</strong> e sottoposta al Project Manager. Clicca le tre fasi per esplorarle.</p>
+                    <p class="rischi-narrative">È fondamentale istituire un processo rigoroso: ogni modifica richiesta deve essere <strong>formalizzata su un apposito documento</strong> e sottoposta al Project Manager.</p>
                     <div class="issue-flow issue-flow--3">
                         <div class="issue-step" data-step="1" tabindex="0">
                             <div class="issue-step-number">01</div>
@@ -1309,7 +1309,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="mc-action-icon">📏</div>
                             <div class="mc-action-text">
                                 <h4>Regola del monitoraggio</h4>
-                                <p>Per deliverable che richiedono più di 2 settimane, monitora l'avanzamento a livello di <em>work package</em>.</p>
+                                <p>Per deliverable che richiedono più di 2 settimane, monitora l'avanzamento a livello di <em>work package</em>:</p>
+                                <ul style="margin-top: 0.35rem; padding-left: 1.1rem; list-style-type: disc; font-size: 0.85rem; line-height: 1.55; color: var(--text-muted);">
+                                    <li style="margin-bottom: 0.2rem;"><strong>Lavori completati:</strong> chiedi la data di fine effettiva.</li>
+                                    <li><strong>Lavori in corso:</strong> chiedi la percentuale di completamento.</li>
+                                </ul>
                             </div>
                         </div>
                         <div class="mc-action-card" tabindex="0">
@@ -1349,7 +1353,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ${buildExpandedHeader(data, 'costi-close-btn')}
             <div class="expanded-body">
                 <div class="rischi-reveal rischi-lead">
-                    <p class="rischi-narrative">A piano approvato, <span class="rischi-highlight">non puoi gestire i costi in modo diretto</span>: tagliare stipendi, pagamenti dei contratti o la qualità rischierebbe di rendere l'intero progetto una perdita di tempo.</p>
+                    <p class="rischi-narrative">A piano approvato, <span class="rischi-highlight">non puoi gestire i costi in modo diretto</span>: tagliare stipendi, pagamenti dei contratti o la qualità rischierebbe di compromettere l'intero progetto.</p>
                     <p class="rischi-narrative">Puoi gestirli efficacemente solo in modo <strong>indiretto</strong>, agendo sulle leve che li generano.</p>
                 </div>
 
@@ -1370,7 +1374,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                     <div class="tc-desc" id="cost-desc">
-                        <strong>Costi sotto controllo, indirettamente.</strong> I costi non si comandano: si governano agendo su Scope, Schedule e Risks. Seleziona una leva per scoprire come.
+                        <strong>Costi sotto controllo, indirettamente.</strong> I costi non si comandano: si governano agendo su Scope, Schedule e Risks.
                     </div>
                 </div>
 
@@ -1442,7 +1446,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 <div class="rischi-reveal expanded-section">
                     <h3 class="rischi-section-title">Come si fa?</h3>
-                    <p class="rischi-narrative">Sette leve operative per tenere il progetto in rotta. Passa o clicca su ciascuna per metterla a fuoco.</p>
+                    <p class="rischi-narrative">Sette leve operative per tenere il progetto in rotta.</p>
                     <div class="mc-action-list">
                         <div class="mc-action-card" tabindex="0">
                             <div class="mc-action-num">01</div>
